@@ -1,0 +1,7 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="gcm_defaultSenderId">518091453252</string>
+    <string name="google_api_key">AIzaSyDPseh9pNQQD4lqa16llNIspKcDwJDvSwc</string>
+    <string name="google_app_id">1:518091453252:android:a64e0f23be0429e8c21d11</string>
+    <string name="project_id">healthplus-d0652</string>
+</resources>

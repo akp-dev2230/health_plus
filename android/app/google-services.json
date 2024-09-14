@@ -1,0 +1,29 @@
+{
+  "project_info": {
+    "project_number": "518091453252",
+    "project_id": "healthplus-d0652",
+    "storage_bucket": "healthplus-d0652.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:518091453252:android:a64e0f23be0429e8c21d11",
+        "android_client_info": {
+          "package_name": "com.example.health_plus"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyDPseh9pNQQD4lqa16llNIspKcDwJDvSwc"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
