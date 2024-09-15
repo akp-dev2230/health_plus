@@ -20,12 +20,6 @@ class _MainPageState extends State<MainPage> {
 
     var currentNavIndex = 0.obs;
 
-    var nav_item = <BottomNavigationBarItem>[
-      const BottomNavigationBarItem(icon: Icon(Icons.home),label: home),
-      const BottomNavigationBarItem(icon: Icon(Icons.bookmark_added_sharp),label: consultants),
-      const BottomNavigationBarItem(icon: Icon(Icons.person),label: profile),
-    ];
-
     var nav_body = [const HomePage(), const Vets(), const ProfilePage()];
 
 
@@ -42,7 +36,7 @@ class _MainPageState extends State<MainPage> {
           buttonBackgroundColor: const Color(0xFF93B1FE),
           color: const Color(0xFF93B1FE),
           backgroundColor: Colors.white,
-          items: [
+          items: const [
             Icon(Icons.home,size: 30,),
             Icon(Icons.bookmark_added_sharp,size: 30,),
             Icon(Icons.person,size: 30,),

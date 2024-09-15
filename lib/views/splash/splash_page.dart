@@ -1,3 +1,4 @@
+import 'package:firebase_auth/firebase_auth.dart';
 import 'package:health_plus/consts/const.dart';
 import 'package:health_plus/views/auth/login_page.dart';
 import 'package:health_plus/views/main_page.dart';
@@ -12,13 +13,23 @@ class SplashPage extends StatefulWidget {
 
 class _SplashPageState extends State<SplashPage> {
 
+  void changeScreen(){
+    Future.delayed(const Duration(seconds: 6),(){
+      FirebaseAuth.instance.authStateChanges().listen((User? user){
+        if(user == null && mounted){
+          Navigator.pushReplacement(context, MaterialPageRoute(builder: (context)=> const LoginPage()));
+        }else{
+          Navigator.pushReplacement(context, MaterialPageRoute(builder: (context)=> const MainPage()));
+        }
+      });
+    });
+  }
+
   @override
   void initState() {
     // TODO: implement initState
     super.initState();
-    Future.delayed(Duration(seconds: 6),(){
-      Navigator.pushReplacement(context, MaterialPageRoute(builder: (context)=>const LoginPage()));
-    });
+    changeScreen();
   }
 
   @override

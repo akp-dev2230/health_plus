@@ -2,6 +2,7 @@ import 'package:flutter/cupertino.dart';
 import 'package:get/get.dart';
 import 'package:health_plus/consts/const.dart';
 import 'package:health_plus/controller/auth_controller.dart';
+import 'package:health_plus/views/auth/forgetPassword_page.dart';
 import 'package:health_plus/views/auth/signup_page.dart';
 import 'package:health_plus/views/main_page.dart';
 import 'package:health_plus/widget_common/textfield_cart.dart';
@@ -110,7 +111,12 @@ class _LoginPageState extends State<LoginPage> {
                            child: const Text("Login",style: TextStyle(color: Colors.white),),
                          ),
                        ),
-                       const Text("Forgot password?",style: TextStyle(color: Colors.black),),
+                       InkWell(
+                         onTap: (){
+                           Navigator.push(context, MaterialPageRoute(builder: (context)=>const ForgetPasswordPage()));
+                         },
+                         child: const Text("Forgot password?",style: TextStyle(color: Colors.black),),
+                       ),
                      ],
                    ),
                    const SizedBox(height: 5.0,),

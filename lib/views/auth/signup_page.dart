@@ -118,7 +118,6 @@ class _SignupPageState extends State<SignupPage> {
                 IntlPhoneField(
                   controller: phoneController,
                   initialCountryCode: 'IN',
-                  focusNode: FocusNode(),
                   keyboardType: TextInputType.number,
                   decoration: InputDecoration(
                     hintText: "phone number...",

@@ -63,5 +63,29 @@ class AuthController extends GetxController{
   }
 
 
+  //reset password method
+  Future<void> sendPasswordResetLink({email,context}) async{
+    try{
+      await FirebaseAuth.instance.sendPasswordResetEmail(email: email);
+    }on FirebaseAuthException catch(e){
+      VxToast.show(context, msg: e.toString());
+    }
+  }
+
+  //check email is registered or not
+  Future<bool> checkUserExistence({email}) async {
+    try {
+      final querySnapshot = await FirebaseFirestore.instance
+          .collection('users') // Assuming you have a 'users' collection
+          .where('email', isEqualTo: email)
+          .get();
+
+      return querySnapshot.docs.isNotEmpty;
+    } catch (e) {
+      print('Error: $e');
+      return false;
+    }
+  }
+
 
 }
