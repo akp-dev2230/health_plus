@@ -1,5 +1,6 @@
 import 'package:health_plus/consts/const.dart';
 import 'package:health_plus/views/appointment_page.dart';
+import 'package:health_plus/views/vets.dart';
 import 'package:health_plus/widget_common/category_card.dart';
 import 'package:health_plus/widget_common/doctor_card.dart';
 
@@ -155,7 +156,7 @@ class HomePage extends StatelessWidget {
                 const SizedBox(height: 15,),
                 doctorCard(
                   onPress: (){
-                    Navigator.push(context, MaterialPageRoute(builder: (context)=>const AppointmentPage()));
+                    Navigator.push(context, MaterialPageRoute(builder: (context)=>const Vets()));
                   },
                   docType: "Eye Specialist",
                   docName: "Dr. Mridul Garg",

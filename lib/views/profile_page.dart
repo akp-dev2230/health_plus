@@ -16,50 +16,90 @@ class ProfilePage extends StatelessWidget {
           backgroundColor: const Color(0xFF93B1FE),
           title: const Text('Your Profile', style: TextStyle(color: Colors.white),),
         ),
-      body: const Padding(
-        padding: EdgeInsets.all(10.0),
-        child: Column(
-          mainAxisAlignment: MainAxisAlignment.center,
-          crossAxisAlignment: CrossAxisAlignment.center,
-          children: [
-            CircleAvatar(
-              radius: 100,
-              foregroundImage: AssetImage(doctor),
+      body:Column(
+        children: [
+          SizedBox(height: 20,),
+          Padding(
+            padding: EdgeInsets.all(context.screenWidth*0.03),
+            child: Container(
+              decoration: BoxDecoration(
+                color: const Color(0xFF93B1FE),
+                borderRadius: BorderRadius.circular(20.0)
+              ),
+              child: Padding(
+                padding: const EdgeInsets.all(30.0),
+                child: Row(
+                  mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                  crossAxisAlignment: CrossAxisAlignment.center,
+                  children: [
+                    CircleAvatar(
+                      backgroundColor: Colors.white,
+                      radius: 50,
+                      foregroundImage: AssetImage(doctor),
+                    ),
+                    SizedBox(width: 5,),
+                    Padding(
+                      padding: EdgeInsets.symmetric(vertical: 12.0),
+                      child: Column(
+                        crossAxisAlignment: CrossAxisAlignment.start,
+                        children: [
+                          Text("Ajit",
+                            style: TextStyle(fontSize: 30,fontWeight: FontWeight.w600),),
+                          Text("ajit007@gmail.com",
+                            style: TextStyle(fontSize: 15),),
+                          Text("7020826685",
+                            style: TextStyle(fontSize: 15),),
+                        ],
+                      ),
+                    ),
+                  ],
+                ),
+              ),
             ),
-            SizedBox(height: 10,),
-            Row(
-              mainAxisAlignment: MainAxisAlignment.center,
-              children: [
-                Text('Name : ',style: TextStyle(color: Colors.black,fontSize: 20,fontWeight: FontWeight.bold),),
-                Text('Ajit'),
-              ],
-            ),
-            Row(
-              mainAxisAlignment: MainAxisAlignment.center,
-              children: [
-                Text('Email : ',style: TextStyle(color: Colors.black,fontSize: 20,fontWeight: FontWeight.bold),),
-                Text('roman45reign02@gmail.com'),
-              ],
-            ),
-            Row(
-              mainAxisAlignment: MainAxisAlignment.center,
-              children: [
-                Text('Gender : ',style: TextStyle(color: Colors.black,fontSize: 20,fontWeight: FontWeight.bold),),
-                Text('Male'),
-              ],
-            ),
-            Row(
-              mainAxisAlignment: MainAxisAlignment.center,
-              children: [
-                Text('Phone : ',style: TextStyle(color: Colors.black,fontSize: 20,fontWeight: FontWeight.bold),),
-                Text('9113198525'),
-              ],
-            ),
+          ),
+          Row(
+            children: [
+              Padding(
 
-
-          ],
-        ),
-      ),
+                padding: EdgeInsets.all(context.screenWidth*0.03),
+                child: Container(
+                  width: 165,
+                  height: 110,
+                  decoration: BoxDecoration(
+                    color: const Color(0xFF93B1FE),
+                    borderRadius: BorderRadius.circular(20)
+                  ),
+                  child: Padding(
+                    padding: const EdgeInsets.all(35),
+                    child: Column(
+                      children: [
+                        Text("Pending"),
+                        Text("Appointments")
+                      ],
+                    ),
+                  ),
+                ),
+              ),
+              Container(
+                width: 165,
+                height: 110,
+                decoration: BoxDecoration(
+                    color: const Color(0xFF93B1FE),
+                    borderRadius: BorderRadius.circular(20)
+                ),
+                child: Padding(
+                  padding: const EdgeInsets.all(40),
+                  child: Column(
+                    children: [
+                      Text("help")
+                    ],
+                  ),
+                ),
+              ),
+            ],
+          )
+        ],
+      )
     );
   }
 }

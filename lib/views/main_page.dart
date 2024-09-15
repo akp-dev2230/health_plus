@@ -1,8 +1,10 @@
+import 'package:curved_navigation_bar/curved_navigation_bar.dart';
 import 'package:get/get.dart';
 import 'package:health_plus/consts/const.dart';
 import 'package:health_plus/views/home_page.dart';
 import 'package:health_plus/views/appointment_page.dart';
 import 'package:health_plus/views/profile_page.dart';
+import 'package:health_plus/views/vets.dart';
 
 
 class MainPage extends StatefulWidget {
@@ -18,13 +20,13 @@ class _MainPageState extends State<MainPage> {
 
     var currentNavIndex = 0.obs;
 
-    var nav_item = [
+    var nav_item = <BottomNavigationBarItem>[
       const BottomNavigationBarItem(icon: Icon(Icons.home),label: home),
-      const BottomNavigationBarItem(icon: Icon(Icons.bookmark_added_sharp),label: msg),
+      const BottomNavigationBarItem(icon: Icon(Icons.bookmark_added_sharp),label: consultants),
       const BottomNavigationBarItem(icon: Icon(Icons.person),label: profile),
     ];
 
-    var nav_body = [const HomePage(), const AppointmentPage(), const ProfilePage()];
+    var nav_body = [const HomePage(), const Vets(), const ProfilePage()];
 
 
     return Scaffold(
@@ -36,18 +38,20 @@ class _MainPageState extends State<MainPage> {
         ],
       ),
 
-      bottomNavigationBar: Obx(
-        ()=> BottomNavigationBar(
-          currentIndex: currentNavIndex.value,
-          selectedItemColor: Colors.black,
+      bottomNavigationBar: CurvedNavigationBar(
+          buttonBackgroundColor: const Color(0xFF93B1FE),
+          color: const Color(0xFF93B1FE),
           backgroundColor: Colors.white,
-          type: BottomNavigationBarType.fixed,
-          items: nav_item,
+          items: [
+            Icon(Icons.home,size: 30,),
+            Icon(Icons.bookmark_added_sharp,size: 30,),
+            Icon(Icons.person,size: 30,),
+          ],
           onTap: (value){
             currentNavIndex.value = value;
           },
         ),
-      ),
+
 
 
     );
