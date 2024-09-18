@@ -1,8 +1,8 @@
 import 'package:curved_navigation_bar/curved_navigation_bar.dart';
 import 'package:get/get.dart';
 import 'package:health_plus/consts/const.dart';
+import 'package:health_plus/views/foster.dart';
 import 'package:health_plus/views/home_page.dart';
-import 'package:health_plus/views/appointment_page.dart';
 import 'package:health_plus/views/profile_page.dart';
 import 'package:health_plus/views/vets.dart';
 
@@ -20,7 +20,7 @@ class _MainPageState extends State<MainPage> {
 
     var currentNavIndex = 0.obs;
 
-    var nav_body = [const HomePage(), const Vets(), const ProfilePage()];
+    var nav_body = [const HomePage(), const Vets(), const Foster(), const ProfilePage(),];
 
 
     return Scaffold(
@@ -39,6 +39,7 @@ class _MainPageState extends State<MainPage> {
           items: const [
             Icon(Icons.home,size: 30,),
             Icon(Icons.bookmark_added_sharp,size: 30,),
+            Icon(Icons.add,size: 30,),
             Icon(Icons.person,size: 30,),
           ],
           onTap: (value){
