@@ -9,6 +9,7 @@ class AuthController extends GetxController{
 
   TextEditingController emailController = TextEditingController();
   TextEditingController passController = TextEditingController();
+  String? userName = '';
 
   //login method
   Future<UserCredential?> loginMethod({context}) async{
@@ -84,6 +85,21 @@ class AuthController extends GetxController{
     } catch (e) {
       print('Error: $e');
       return false;
+    }
+  }
+
+
+  //retreive current username from firestore
+  Future<void> fetchUserName(context) async{
+    User? user = FirebaseAuth.instance.currentUser;
+    try{
+      if(user != null){
+        DocumentSnapshot userDoc = await FirebaseFirestore.instance.collection('users').doc(user.uid).get();
+
+        userName = userDoc['name'] ?? 'User';
+      }
+    }on FirebaseAuthException catch (e){
+      VxToast.show(context, msg: e.toString());
     }
   }
 

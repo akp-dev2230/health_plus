@@ -1,23 +1,47 @@
+import 'package:get/get.dart';
 import 'package:health_plus/consts/const.dart';
+import 'package:health_plus/controller/auth_controller.dart';
 import 'package:health_plus/views/appointment_page.dart';
+import 'package:health_plus/views/home_page/side_menu_bar.dart';
 import 'package:health_plus/views/vets.dart';
 import 'package:health_plus/widget_common/category_card.dart';
 import 'package:health_plus/widget_common/doctor_card.dart';
 
-class HomePage extends StatelessWidget {
+class HomePage extends StatefulWidget {
   const HomePage({super.key});
+
+  @override
+  State<HomePage> createState() => _HomePageState();
+}
+
+class _HomePageState extends State<HomePage> {
+
+  var controller = Get.put(AuthController());
+
+  @override
+  void initState() {
+    // TODO: implement initState
+    super.initState();
+    getUserName();
+  }
+  void getUserName(){
+    setState(() {
+      controller.fetchUserName(context);
+    });
+  }
 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
       backgroundColor: Colors.white,
+      drawer: const SideMenuBar(),
       appBar: AppBar(
         backgroundColor: Colors.white,
-        title: const Column(
+        title: Column(
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
-            Text('Hello Ajit',style: TextStyle(color: Color(0xFF037ED7), fontSize: 18.0),),
-            Text('Find your specialist',style: TextStyle(color: Colors.black, fontSize: 24.0, fontWeight: FontWeight.bold),),
+            Text('Hello ${controller.userName}',style: const TextStyle(color: Color(0xFF037ED7), fontSize: 18.0),),
+            const Text('Find your specialist',style: TextStyle(color: Colors.black, fontSize: 24.0, fontWeight: FontWeight.bold),),
           ],
         ),
       ),
@@ -47,15 +71,13 @@ class HomePage extends StatelessWidget {
                       border: InputBorder.none,
                       filled: true,
                       fillColor: Colors.white,
-                      prefixIcon: const Icon(Icons.menu),
-                      hintText: 'Search....',
+                      prefixIcon: const Icon(Icons.search),
+                      hintText: 'Search anything....',
                       contentPadding: const EdgeInsets.symmetric(vertical: 15.0),
-                      suffixIcon: const Icon(Icons.search)
                     ),
                   ),
                 ),
                 const SizedBox(height: 30,),
-
 
                 // Categories
                 const Text('Categories',style: TextStyle(fontSize: 20.0,fontWeight: FontWeight.w500),),
@@ -162,8 +184,6 @@ class HomePage extends StatelessWidget {
                   docName: "Dr. Mridul Garg",
                   rating: "4.6  208 Reviews",
                 ),
-
-
 
               ],
             ),

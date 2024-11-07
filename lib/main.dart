@@ -1,8 +1,5 @@
 import 'package:firebase_core/firebase_core.dart';
 import 'package:health_plus/consts/const.dart';
-import 'package:health_plus/views/auth/login_page.dart';
-import 'package:health_plus/views/home_page.dart';
-import 'package:health_plus/views/main_page.dart';
 import 'package:health_plus/views/splash/splash_page.dart';
 
 Future<void> main() async {
