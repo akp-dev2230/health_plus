@@ -1,7 +1,8 @@
 import 'package:curved_navigation_bar/curved_navigation_bar.dart';
 import 'package:get/get.dart';
 import 'package:health_plus/consts/const.dart';
-import 'package:health_plus/views/home_page/home_page.dart';
+import 'package:health_plus/views/home_page.dart';
+import 'package:health_plus/views/appointment_page.dart';
 import 'package:health_plus/views/profile_page.dart';
 import 'package:health_plus/views/vets.dart';
 
@@ -19,14 +20,14 @@ class _MainPageState extends State<MainPage> {
 
     var currentNavIndex = 0.obs;
 
-    var navBody = [const HomePage(), const Vets(), const ProfilePage()];
+    var nav_body = [const HomePage(), const Vets(), const ProfilePage()];
 
 
     return Scaffold(
       backgroundColor: Colors.white,
       body: Column(
         children: [
-          Obx(()=> Expanded(child: navBody.elementAt(currentNavIndex.value))),
+          Obx(()=> Expanded(child: nav_body.elementAt(currentNavIndex.value))),
           // Text("${currentNavIndex}"),
         ],
       ),

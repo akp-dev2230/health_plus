@@ -2,7 +2,7 @@ import 'package:health_plus/consts/const.dart';
 
 
 //login page images
-const loginWall = 'assets/images/login_wallpaper.jpg';
+const loginWall = 'assets/images/login_wallpaper.jpeg';
 
 //main page images
 const heart = 'assets/images/heart.png';
@@ -21,5 +21,11 @@ const google = 'assets/images/google.png',
 
 //appointment page
 const lab = 'assets/images/lab_test.jpg',
-    medicine = 'assets/images/medicine.jpg',
+    medicine = 'assets/images/medicine.jpeg',
     healthInsurance = 'assets/images/health_insurance.png';
+
+//foster
+const doberman='assets/images/doberman.jpeg.jpg',
+    cow='assets/images/cow.jpeg.jpg',
+    goldenR='assets/images/goldenR .jpeg.jpg',
+    cat='assets/images/cat .jpeg.jpg';
