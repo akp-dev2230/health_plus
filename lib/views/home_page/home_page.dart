@@ -1,9 +1,8 @@
 import 'package:get/get.dart';
 import 'package:health_plus/consts/const.dart';
 import 'package:health_plus/controller/auth_controller.dart';
-import 'package:health_plus/views/appointment_page.dart';
-import 'package:health_plus/views/home_page/side_menu_bar.dart';
-import 'package:health_plus/views/vets.dart';
+import 'package:health_plus/views/other/appointment_page.dart';
+import 'package:health_plus/views/vets/vets.dart';
 import 'package:health_plus/widget_common/category_card.dart';
 import 'package:health_plus/widget_common/doctor_card.dart';
 
@@ -26,7 +25,7 @@ class _HomePageState extends State<HomePage> {
   }
   void getUserName(){
     setState(() {
-      controller.fetchUserName(context);
+      controller.fetchUserName();
     });
   }
 
@@ -34,7 +33,6 @@ class _HomePageState extends State<HomePage> {
   Widget build(BuildContext context) {
     return Scaffold(
       backgroundColor: Colors.white,
-      drawer: const SideMenuBar(),
       appBar: AppBar(
         backgroundColor: Colors.white,
         title: Column(

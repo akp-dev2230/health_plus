@@ -6,7 +6,6 @@ import 'package:health_plus/views/auth/forgetPassword_page.dart';
 import 'package:health_plus/views/auth/signup_page.dart';
 import 'package:health_plus/views/main_page.dart';
 import 'package:health_plus/widget_common/textfield_cart.dart';
-import 'package:velocity_x/velocity_x.dart';
 
 class LoginPage extends StatefulWidget {
   const LoginPage({super.key});
@@ -37,7 +36,7 @@ class _LoginPageState extends State<LoginPage> {
            padding: const EdgeInsets.only(left: 15.0,right: 15.0,bottom: 15.0),
            child: Material(
              elevation: 5.0,
-             shadowColor: Colors.white,
+             shadowColor: Colors.grey,
              borderRadius: BorderRadius.circular(10.0),
              child: Container(
                padding: const EdgeInsets.only(left: 15.0,right: 15.0,bottom: 15.0),
@@ -83,7 +82,7 @@ class _LoginPageState extends State<LoginPage> {
                      crossAxisAlignment: CrossAxisAlignment.end,
                      children: [
                        SizedBox(
-                         width: context.screenWidth,
+                         width: double.infinity,
                          child: ElevatedButton(
                            style: ElevatedButton.styleFrom(
                              backgroundColor: Colors.blue,
@@ -96,16 +95,26 @@ class _LoginPageState extends State<LoginPage> {
                                try{
                                  await controller.loginMethod(context: context).then((value){
                                    if (value != null){
-                                     VxToast.show(context, msg: "Successfully Logged in");
-                                     Navigator.pushReplacement(context, MaterialPageRoute(builder: (context)=> const MainPage()));
+                                     Get.snackbar("","",
+                                       titleText: const Text("Successfully Logged in", style: TextStyle(fontSize: 18, fontWeight: FontWeight.w700, color: Colors.black),),
+                                       backgroundColor: Colors.white,
+                                     );
+                                     Get.off(const MainPage());
                                    }
                                  });
                                }catch (e){
-                                 VxToast.show(context, msg: e.toString());
+                                 Get.snackbar("","",
+                                   titleText: const Text("Error", style: TextStyle(fontSize: 18, fontWeight: FontWeight.w700, color: Colors.black),),
+                                   messageText: Text("$e", style: const TextStyle(fontSize: 16, color: Colors.black),),
+                                   backgroundColor: Colors.white,
+                                 );
                                }
                              }
                              else{
-                               VxToast.show(context, msg: 'Please fill email and password',bgColor: Colors.white,);
+                               Get.snackbar("","",
+                                 titleText: const Text("Please fill email and password", style: TextStyle(fontSize: 18, fontWeight: FontWeight.w700, color: Colors.black),),
+                                 backgroundColor: Colors.white,
+                               );
                              }
                            },
                            child: const Text("Login",style: TextStyle(color: Colors.white),),
@@ -123,23 +132,27 @@ class _LoginPageState extends State<LoginPage> {
                    const Divider(color: Colors.black,),
                    const SizedBox(height: 5.0,),
 
-                   //images logo
-                   const Row(
-                     mainAxisAlignment: MainAxisAlignment.spaceAround,
-                     children: [
-                       CircleAvatar(
-                         backgroundColor: Colors.white,
-                         child: Image(image: AssetImage(google),fit: BoxFit.cover,),
-                       ),
-                       CircleAvatar(
-                         backgroundColor: Colors.white,
-                         child: Image(image: AssetImage(facebook),fit: BoxFit.cover,),
-                       ),
-                       CircleAvatar(
-                         backgroundColor: Colors.white,
-                         child: Image(image: AssetImage(linkedin),fit: BoxFit.cover,),
-                       ),
-                     ],
+                   ListTile(
+                     leading: const CircleAvatar(
+                       backgroundColor: Colors.white,
+                       child: Image(image: AssetImage(google),fit: BoxFit.cover,),
+                     ),
+                     title: const Text('Continue with Google',style: TextStyle(color: Colors.black),),
+                     onTap: ()async{
+                       try{
+                         await controller.signInWithGoogle().then((value){
+                           if(value!=null){
+                             Get.off(const MainPage());
+                           }
+                         });
+                       }catch(e){
+                         Get.snackbar("","",
+                           titleText: const Text("Error", style: TextStyle(fontSize: 18, fontWeight: FontWeight.w700, color: Colors.black),),
+                           messageText: Text("$e", style: const TextStyle(fontSize: 16, color: Colors.black),),
+                           backgroundColor: Colors.white,
+                         );
+                       }
+                     },
                    ),
                    const SizedBox(height: 10,),
                    Row(

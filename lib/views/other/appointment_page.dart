@@ -1,7 +1,6 @@
 import 'package:health_plus/consts/const.dart';
 import 'package:health_plus/widget_common/calendar_card.dart';
 import 'package:health_plus/widget_common/otherservices_card.dart';
-import 'package:velocity_x/velocity_x.dart';
 
 class AppointmentPage extends StatefulWidget {
   const AppointmentPage({super.key});
@@ -34,14 +33,14 @@ class _AppointmentPageState extends State<AppointmentPage> {
               //calendar part
               Row(
                 children: [
-                  Icon(Icons.calendar_today_rounded,color: Colors.black,size: context.screenHeight*0.10,),
+                  const Icon(Icons.calendar_today_rounded,color: Colors.black,size: 20,),
                   const SizedBox(width: 5,),
                   Column(
                     crossAxisAlignment: CrossAxisAlignment.start,
                     children: [
                       const Text('Select Month',style: TextStyle(color: Colors.black),),
                       SizedBox(
-                        width: context.screenWidth*0.4,
+                        width: 400,
                         child: DropdownButtonFormField(
                           value: monthName,
                           items: month.map<DropdownMenuItem>((value){
@@ -173,10 +172,10 @@ class _AppointmentPageState extends State<AppointmentPage> {
   }
 }
 
-Widget Check(){
+Widget check(){
   return Row(
     children: [
-      Text('March',style: TextStyle(color: Colors.black,fontWeight: FontWeight.bold),),
+      const Text('March',style: TextStyle(color: Colors.black,fontWeight: FontWeight.bold),),
       Container(
         decoration: BoxDecoration(
           shape: BoxShape.circle,

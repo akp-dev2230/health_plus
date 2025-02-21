@@ -1,8 +1,8 @@
+import 'package:get/get.dart';
 import 'package:health_plus/consts/const.dart';
-import 'package:health_plus/controller/auth_controller.dart';
-import 'package:health_plus/views/animal_description.dart';
+import 'package:health_plus/services/notification_service.dart';
+import 'package:health_plus/views/other/animal_description.dart';
 import 'package:health_plus/widget_common/doctor_card.dart';
-import 'package:velocity_x/velocity_x.dart';
 
 class Vets extends StatelessWidget {
   const Vets({super.key});
@@ -10,15 +10,29 @@ class Vets extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+      backgroundColor: Colors.white,
       appBar: AppBar(
         backgroundColor:  const Color(0xFF93B1FE),
+        actions: [
+          IconButton(
+            onPressed: () async{
+              await NotificationService.scheduleNotification().then((value){
+                Get.snackbar("","",
+                  titleText: const Text("Notification Scheduled!", style: TextStyle(fontSize: 18, fontWeight: FontWeight.w700, color: Colors.black),),
+                  backgroundColor: Colors.white,
+                );
+              });
+            },
+            icon: const Icon(Icons.notifications),
+          ),
+        ],
       ),
       body: Padding(
-        padding: EdgeInsets.all(context.screenWidth*0.05),
+        padding: const EdgeInsets.all(8),
         child: SingleChildScrollView(
           child: Column(
             children: [
-              Text("Consultants", style: TextStyle(fontSize: 30),),
+              const Text("Consultants", style: TextStyle(fontSize: 30),),
               doctorCard(
                 docType: "Sergon",
                 docName: "Dr. KV",
@@ -27,7 +41,7 @@ class Vets extends StatelessWidget {
                   Navigator.push(context, MaterialPageRoute(builder: (context)=>const AnimalDescription()));
                 }
               ),
-              SizedBox(height: 15,),
+              const SizedBox(height: 15,),
               doctorCard(
                   docType: "Dermatologist",
                   docName: "Dr. AKG",
@@ -36,7 +50,7 @@ class Vets extends StatelessWidget {
                     Navigator.push(context, MaterialPageRoute(builder: (context)=>const AnimalDescription()));
                   }
               ),
-              SizedBox(height: 15,),
+              const SizedBox(height: 15,),
               doctorCard(
                   docType: "Cardiologist",
                   docName: "Dr. Bugu",
@@ -45,7 +59,7 @@ class Vets extends StatelessWidget {
                     Navigator.push(context, MaterialPageRoute(builder: (context)=>const AnimalDescription()));
                   }
               ),
-              SizedBox(height: 15,),
+              const SizedBox(height: 15,),
               doctorCard(
                   docType: "Psychologist",
                   docName: "Dr. TUTU",
@@ -54,7 +68,7 @@ class Vets extends StatelessWidget {
                     Navigator.push(context, MaterialPageRoute(builder: (context)=>const AnimalDescription()));
                   }
               ),
-              SizedBox(height: 15,),
+              const SizedBox(height: 15,),
               doctorCard(
                   docType: "cardiologist",
                   docName: "Dr. Bhoma",
@@ -63,7 +77,7 @@ class Vets extends StatelessWidget {
                     Navigator.push(context, MaterialPageRoute(builder: (context)=>const AnimalDescription()));
                   }
               ),
-              SizedBox(height: 15,),
+              const SizedBox(height: 15,),
               doctorCard(
                   docType: "Gynocologist",
                   docName: "Dr.Deepankar ",
@@ -72,7 +86,7 @@ class Vets extends StatelessWidget {
                     Navigator.push(context, MaterialPageRoute(builder: (context)=>const AnimalDescription()));
                   }
               ),
-              SizedBox(height: 15,),
+              const SizedBox(height: 15,),
               doctorCard(
                   docType: "Sergon",
                   docName: "Dr. Shaktiman",

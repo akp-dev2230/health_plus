@@ -3,7 +3,6 @@ import 'package:get/get.dart';
 import 'package:health_plus/consts/const.dart';
 import 'package:health_plus/controller/auth_controller.dart';
 import 'package:health_plus/widget_common/textfield_cart.dart';
-import 'package:velocity_x/velocity_x.dart';
 
 class ForgetPasswordPage extends StatelessWidget {
   const ForgetPasswordPage({super.key});
@@ -18,7 +17,7 @@ class ForgetPasswordPage extends StatelessWidget {
     return Scaffold(
       appBar: AppBar(),
       body: Padding(
-        padding: EdgeInsets.all(context.screenWidth*0.05),
+        padding: const EdgeInsets.all(20),
         child: Column(
           mainAxisAlignment: MainAxisAlignment.center,
           crossAxisAlignment: CrossAxisAlignment.start,
@@ -39,18 +38,26 @@ class ForgetPasswordPage extends StatelessWidget {
                   try{
                     final response = await controller.checkUserExistence(email: resetPassController.text.toString());
                     if(response){
-                      await controller.sendPasswordResetLink(email: resetPassController.text.toString());
-                      VxToast.show(context, msg: "link has been sent");
-                      Navigator.pop(context);
+                      await controller.sendPasswordResetLink(email: resetPassController.text.toString()).then((value){
+                        Get.snackbar("","",
+                          titleText: const Text("Password reset link has been sent", style: TextStyle(fontSize: 18, fontWeight: FontWeight.w700, color: Colors.black),),
+                          backgroundColor: Colors.white,
+                        );
+                        Get.back();
+                      });
                     }else{
-                      VxToast.show(context, msg: "user not registered");
+                      Get.snackbar("","",
+                        titleText: const Text("Error", style: TextStyle(fontSize: 18, fontWeight: FontWeight.w700, color: Colors.black),),
+                        messageText: const Text("user not registered", style: TextStyle(fontSize: 16, color: Colors.black),),
+                        backgroundColor: Colors.white,
+                      );
                     }
                   }on FirebaseAuthException catch (e){
-                    if (e.code == 'user-not-found') {
-                      VxToast.show(context, msg: "No user found with this email.");
-                    } else {
-                      VxToast.show(context, msg: e.message ?? "An error occurred");
-                    }
+                    Get.snackbar("","",
+                      titleText: const Text("Error", style: TextStyle(fontSize: 18, fontWeight: FontWeight.w700, color: Colors.black),),
+                      messageText: Text("$e", style: const TextStyle(fontSize: 16, color: Colors.black),),
+                      backgroundColor: Colors.white,
+                    );
                   }
                 },
                 style: ElevatedButton.styleFrom(

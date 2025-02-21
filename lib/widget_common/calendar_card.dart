@@ -1,5 +1,4 @@
 import 'package:health_plus/consts/const.dart';
-import 'package:velocity_x/velocity_x.dart';
 
 Widget calendarCard({date}){
   return Padding(

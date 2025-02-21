@@ -2,10 +2,8 @@ import 'package:flutter/cupertino.dart';
 import 'package:get/get.dart';
 import 'package:health_plus/consts/const.dart';
 import 'package:health_plus/controller/auth_controller.dart';
-import 'package:health_plus/views/auth/login_page.dart';
 import 'package:health_plus/widget_common/textfield_cart.dart';
 import 'package:intl_phone_field/intl_phone_field.dart';
-import 'package:velocity_x/velocity_x.dart';
 
 class SignupPage extends StatefulWidget {
   const SignupPage({super.key});
@@ -17,8 +15,6 @@ class SignupPage extends StatefulWidget {
 class _SignupPageState extends State<SignupPage> {
 
   var controller = Get.put(AuthController());
-
-  String? selectedGender;
   bool isChecked = false;
 
   //text controller
@@ -74,42 +70,6 @@ class _SignupPageState extends State<SignupPage> {
                   keyboardType: TextInputType.emailAddress,
                   preFixIcon: Icons.email_outlined,
                   hintText: "email",
-                ),
-                const SizedBox(height: 8,),
-
-                //gender
-                const Text("Gender", style: TextStyle(fontSize: 18.0,color: Colors.black),),
-                DropdownButtonFormField(
-                  value: selectedGender,
-                  dropdownColor: Colors.white,
-                  decoration: InputDecoration(
-                    hintText: "select gender",
-                    enabledBorder: OutlineInputBorder(
-                        borderRadius: BorderRadius.circular(10.0),
-                        borderSide: const BorderSide(
-                          color: Colors.black,
-                          width: 0.4,
-                        )
-                    ),
-                    focusedBorder: OutlineInputBorder(
-                        borderRadius: BorderRadius.circular(10.0),
-                        borderSide: const BorderSide(
-                          color: Colors.black,
-                          width: 1.0,
-                        )
-                    ),
-                  ),
-                  onChanged: (newValue) {
-                    setState(() {
-                      selectedGender = newValue;
-                    });
-                  },
-                  items: genderList.map<DropdownMenuItem>((value){
-                    return DropdownMenuItem(
-                      value: value,
-                      child: Text(value),
-                    );
-                  }).toList()
                 ),
                 const SizedBox(height: 8,),
 
@@ -225,19 +185,23 @@ class _SignupPageState extends State<SignupPage> {
                                 await controller.signupMethod(
                                   name: nameController.text,
                                   email: emailController.text,
-                                  gender: selectedGender,
                                   phone: phoneController.text,
                                   password: passController.text,
                                 ).then((value){
-                                  VxToast.show(context, msg: "Sign up completed");
-                                  Navigator.pushReplacement(context, MaterialPageRoute(builder: (context)=> const LoginPage()));
+                                  Get.back();
                                 });
                               }catch(e){
-                                // controller.logoutMethod(context: context);
-                                VxToast.show(context, msg: e.toString());
+                                Get.snackbar("","",
+                                  titleText: const Text("Error", style: TextStyle(fontSize: 18, fontWeight: FontWeight.w700, color: Colors.black),),
+                                  messageText: Text("$e", style: const TextStyle(fontSize: 16, color: Colors.black),),
+                                  backgroundColor: Colors.white,
+                                );
                               }
                             }else{
-                              VxToast.show(context, msg: 'Please fill all details',bgColor: Colors.white,);
+                              Get.snackbar("","",
+                                titleText: const Text("Please fill all details", style: TextStyle(fontSize: 18, fontWeight: FontWeight.w700, color: Colors.black),),
+                                backgroundColor: Colors.white,
+                              );
                             }
                           }
 
@@ -251,7 +215,7 @@ class _SignupPageState extends State<SignupPage> {
                         const Text("Already have an account? "),
                         TextButton(
                             onPressed: (){
-                              Navigator.pushReplacement(context, MaterialPageRoute(builder: (context)=> const LoginPage()));
+                              Navigator.pop(context);
                             },
                             child: const Text('Log in',
                               style: TextStyle(color: Colors.blue,fontWeight: FontWeight.bold),)
