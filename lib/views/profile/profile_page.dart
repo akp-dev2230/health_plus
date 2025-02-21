@@ -1,9 +1,10 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
+import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
+import 'package:google_sign_in/google_sign_in.dart';
 import 'package:health_plus/consts/image.dart';
-import 'package:health_plus/controller/auth_controller.dart';
 import 'package:health_plus/controller/profile_controller.dart';
 import 'package:health_plus/services/firestoreservices.dart';
 import 'package:health_plus/views/auth/login_page.dart';
@@ -14,6 +15,7 @@ class ProfilePage extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
 
+    final GoogleSignIn googleSignIn = GoogleSignIn();
     var controller = Get.put(ProfileController());
 
     final screenWidth = MediaQuery.of(context).size.width;
@@ -129,9 +131,19 @@ class ProfilePage extends StatelessWidget {
                               style: TextStyle(color: Colors.red),
                             ),
                             onTap: () async {
-                              await AuthController().logoutMethod().then((value){
-                                Get.off(const LoginPage());
-                              });
+                              try {
+                                if (googleSignIn.currentUser != null) {
+                                  await googleSignIn.disconnect();
+                                }
+                              } catch (e) {
+                                Get.snackbar("","",
+                                  titleText: const Text("Log out failed", style: TextStyle(fontSize: 18, fontWeight: FontWeight.w700, color: Colors.black),),
+                                  messageText: Text("$e", style: const TextStyle(fontSize: 16, color: Colors.black),),
+                                  backgroundColor: Colors.white,
+                                );
+                              }
+                              await FirebaseAuth.instance.signOut();
+                              Get.off(const LoginPage());
                             },
                           )
                         ],
