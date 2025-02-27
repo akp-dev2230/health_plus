@@ -23,7 +23,7 @@ class AuthController extends GetxController{
       if(userCredential.user !=null && !userCredential.user!.emailVerified){
         Get.snackbar("","",
           titleText: const Text("Warning", style: TextStyle(fontSize: 18, fontWeight: FontWeight.w700, color: Colors.black),),
-          messageText: const Text("PLease verify your email before logging in.", style: const TextStyle(fontSize: 16, color: Colors.black),),
+          messageText: const Text("Please verify your email before you log in.", style: TextStyle(fontSize: 16, color: Colors.black),),
           backgroundColor: Colors.white,
         );
         return null;
@@ -142,7 +142,7 @@ class AuthController extends GetxController{
         final name = user.displayName ?? ""; // If null, store empty
         final email = user.email ?? "";       // If null, store empty
         final phone = user.phoneNumber ?? ""; // If null, store empty
-        final password = "";                  // Not available from Google
+        const password = "";                  // Not available from Google
 
         await storeUserData(
           name: name,
